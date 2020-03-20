@@ -24,7 +24,7 @@ def get(raw_text):
         version='2020-02-25',
         authenticator=authenticator
     )
-    tone_analyzer.set_service_url('https://api.us-south.tone-analyzer.watson.cloud.ibm.com/instances/421d8d20-ab81-4291-a7ba-0e37f6cbf9de')
+    tone_analyzer.set_service_url('https://api.us-south.tone-analyzer.watson.cloud.ibm.com/instances/39cb10a6-c500-45b2-8481-053a17155502')
     try:
         resp = tone_analyzer.tone(
             {'text': raw_text},
