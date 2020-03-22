@@ -13,6 +13,7 @@ lib_path = os.path.abspath(os.path.join(__file__, '..', '..'))
 sys.path.append(lib_path)
 import data.tone_analyzer as tone_analyzer
 from data.make_dataset import make_media_tag_data
+import webapp.my_email as my_email
 
 analyzer = SentimentIntensityAnalyzer()
 
@@ -86,7 +87,11 @@ preds = rf.predict_proba(data[[
 potential = [x for x in zip(articles, preds[:, 1]) if x[1] > 0.5]
 in_order = sorted(potential, key=lambda x: -x[1])
 top_articles = in_order[:3]
-print(top_articles)
+
+my_email.send_climate_articles('wraedy@gmail.com', top_articles)
+
+
+
 
 # need to figure out if it's different (maintain state? that would suck)
 # send to a slack channel or what?
