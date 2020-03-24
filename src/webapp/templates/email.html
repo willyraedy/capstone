@@ -1,0 +1,103 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      body {
+        font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+        color: #4a4949;
+      }
+
+      .title {
+        background: #f8f8f8;
+        padding: 5px 15px 5px 15px;
+        margin: 0;
+      }
+
+      .container {
+        padding: 5px 15px 5px 15px;
+      }
+
+      #article-header {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+
+      .subheader {
+        margin-top: 5px;
+      }
+
+      .subheader p {
+        display: inline;
+        margin-left: 5px;
+      }
+
+      .article {
+        font-size: 22px;
+        text-decoration: none;
+        color: #427fed;
+      }
+
+      .border {
+        border: lightgray 1px solid;
+      }
+
+      .article-container {
+        border-bottom: lightgray 1px solid;
+        padding: 20px;
+      }
+
+      .minimal {
+        color: gray;
+      }
+
+      .bb {
+        border-bottom: lightgray 1px solid;
+      }
+
+      .article-header-container {
+        padding: 10px;
+      }
+
+      .time-header-container {
+        padding: 10px 0 0 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class=border>
+      <h1 class='title border'>Raising Climate Change Awareness on Reddit</h1>
+      <div class='container border'>
+        <div class='article-header-container bb'>
+          <h2 id=article-header>Recommended Articles</h2>
+          <div class=subheader>
+            <p>Morning list</p>
+            <p>{{date}}</p>
+          </div>
+        </div>
+          {% for article in articles %}
+          <div class=article-container>
+            <a class=article href='{{article.link}}'>{{article.title}}</a>
+            <div class=subheader>
+              <p >Confidence Score: {{article.score}}</p>
+            </div>
+          </div>
+          {% endfor %}
+          <div class=time-header-container>
+            <h2 id=article-header>When to Post:</h2>
+          </div>
+          <ul>
+            <li>Best: Before 8am</li>
+            <li>Better: Between 10am - noon</li>
+            <li>Ok: Between 4pm - 6pm</li>
+          </ul>
+
+      </div>
+    </div>
+
+  </body>
+</html>
+
+
+

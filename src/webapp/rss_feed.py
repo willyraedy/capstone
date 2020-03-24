@@ -53,42 +53,11 @@ def shape_rss_data_for_model(articles):
   merged = df.merge(mc_df, how='left', on='tld')
   return merged.fillna(0)
 
-def train_model():
-  file_path = os.path.abspath(os.path.join(__file__, '..', '..', '..', 'data', 'processed', 'prod_training_data.csv'))
-  model_data = pd.read_csv(file_path)
-  X, y = model_data[[
-    'sentiment_score',
-    'tag_United States',
-    'analytical',
-    'tentative',
-  ]], model_data.viral
-  ros = RandomOverSampler(random_state=42)
-  X_fin_ros, y_fin_ros = ros.fit_resample(X, y)
-  rf_params = {
-    'max_depth': 2,
-    'n_estimators': 300,
-    'random_state': 42,
-    'min_samples_leaf': 17
-  }
-  rf_final = RandomForestClassifier(**rf_params)
-  rf_final.fit(X_fin_ros, y_fin_ros)
-  return rf_final
+def format_article(raw_article):
+  title, link = raw_article[0]
+  confidence_score = raw_article[1]
+  return {'title': title, 'link': link, 'score': round(confidence_score,2)}
 
-rf = train_model()
-articles = fetch_rss_data()
-data = shape_rss_data_for_model(articles)
-preds = rf.predict_proba(data[[
-    'sentiment_score',
-    'tag_United States',
-    'analytical',
-    'tentative',
-  ]])
-
-potential = [x for x in zip(articles, preds[:, 1]) if x[1] > 0.5]
-in_order = sorted(potential, key=lambda x: -x[1])
-top_articles = in_order[:3]
-
-my_email.send_climate_articles('wraedy@gmail.com', top_articles)
 
 
 
