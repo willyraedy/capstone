@@ -3,8 +3,8 @@ import sys
 lib_path = os.path.abspath(os.path.join(__file__, '..', '..'))
 sys.path.append(lib_path)
 from models.train_model import train_model
-import webapp.rss_feed as rss_feed
-import webapp.my_email as my_email
+import email_tool.rss_feed as rss_feed
+import email_tool.my_email as my_email
 
 rf = train_model()
 articles = rss_feed.fetch_rss_data()

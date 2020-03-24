@@ -13,7 +13,7 @@ lib_path = os.path.abspath(os.path.join(__file__, '..', '..'))
 sys.path.append(lib_path)
 import data.tone_analyzer as tone_analyzer
 from data.make_dataset import make_media_tag_data
-import webapp.my_email as my_email
+import email_tool.my_email as my_email
 
 analyzer = SentimentIntensityAnalyzer()
 
